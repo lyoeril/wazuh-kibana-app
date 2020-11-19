@@ -16,15 +16,15 @@ import { WazuhPlugin } from './server/plugin';
 export default (kibana) => {
   return new kibana.Plugin({
     require: ['kibana', 'elasticsearch'],
-    id: 'wazuh',
-    name: 'wazuh',
+    id: 'managedsecurity',
+    name: 'managedsecurity',
     uiExports: {
       app: {
-        id: 'wazuh',
-        title: 'Wazuh',
-        description: 'Wazuh app for Kibana',
-        icon: 'plugins/wazuh/img/icon_blue.png',
-        main: 'plugins/wazuh/app'
+        id: 'managedsecurity',
+        title: 'ManagedSecurity',
+        description: 'ManagedSecurity app for Kibana',
+        icon: 'plugins/managedsecurity/img/emblem.png',
+        main: 'plugins/managedsecurity/app'
       },
       __bundleProvider__(kbnServer) {
         kbnServer.uiBundles.addPostLoader({

@@ -85,7 +85,7 @@ export class ReportingService {
       );
 
       const array = await this.vis2png.checkArray(idArray);
-      const name = `wazuh-${
+      const name = `ManagedSecurity-${
         isAgents ? 'agents' : 'overview'
       }-${tab}-${(Date.now() / 1000) | 0}.pdf`;
 
@@ -111,7 +111,7 @@ export class ReportingService {
       this.$rootScope.reportStatus = false;
       this.$rootScope.$applyAsync();
       ErrorHandler.info(
-        'Success. Go to Wazuh > Management > Reporting',
+        'Success. Go to ManagedSecurity > Management > Reporting',
         'Reporting'
       );
 
@@ -157,7 +157,7 @@ export class ReportingService {
       this.$rootScope.reportStatus = false;
       this.$rootScope.$applyAsync();
       ErrorHandler.info(
-        'Success. Go to Wazuh > Management > Reporting',
+        'Success. Go to ManagedSecurity > Management > Reporting',
         'Reporting'
       );
 

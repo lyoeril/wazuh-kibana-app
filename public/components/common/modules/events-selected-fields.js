@@ -146,6 +146,24 @@ export const EventsSelectedFiles = {
     'rule.description',
     'rule.level',
     'rule.id'
+  ],  
+  threat: [
+    'agent.id',
+    'rule.description',
+    'rule.level',
+    'rule.id',
+  ], 
+  firewall: [
+    'agent.id',
+    'rule.description',
+    'rule.level',
+    'rule.id',
+  ], 
+  ad: [
+    'agent.id',
+    'rule.description',
+    'rule.level',
+    'rule.id',
   ],
   
 };

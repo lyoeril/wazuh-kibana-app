@@ -18,7 +18,7 @@ import { ManagementWelcomeWrapper } from '../../components/common/welcome/manage
 import WzManagement from './components/management/management-provider';
 import WzManagementConfiguration from './components/management/configuration/configuration-main';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .controller('managementController', ManagementController)

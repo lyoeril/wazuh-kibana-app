@@ -60,7 +60,10 @@ class WzMenuOverview extends Component {
       gdpr: { id: 'gdpr', text: 'GDPR' },
       hipaa: { id: 'hipaa', text: 'HIPAA' },
       nist: { id: 'nist', text: 'NIST 800-53' },
-      tsc: { id: 'tsc', text: 'TSC' }
+      tsc: { id: 'tsc', text: 'TSC' },
+      ad: { id: 'ad', text: 'Active Directory' },
+      threat: { id: 'threat', text: 'Network Threats' },
+      firewall: { id: 'firewall', text: 'Firewall' }
     };
 
     this.wzReq = WzRequest;
@@ -143,17 +146,20 @@ class WzMenuOverview extends Component {
   render() {
     let securityInformationItems = [
       this.overviewSections.general,
+      this.overviewSections.firewall,
       this.overviewSections.fim,
       this.overviewSections.aws,
       this.overviewSections.gcp
     ];
     let auditingItems = [
       this.overviewSections.pm,
+      this.overviewSections.ad,
       this.overviewSections.ciscat,
       this.overviewSections.sca
     ];
     let threatDetectionItems = [
       this.overviewSections.virustotal,
+      this.overviewSections.threat,
       this.overviewSections.osquery,
       this.overviewSections.mitre
     ];

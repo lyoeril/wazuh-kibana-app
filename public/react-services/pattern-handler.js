@@ -78,7 +78,7 @@ export class PatternHandler {
             !window.location.hash.includes('#/settings') &&
             !window.location.hash.includes('#/blank-screen')
           ) {
-            window.location.href = '/app/wazuh#/blank-screen/';
+            window.location.href = '/app/managedsecurity#/blank-screen/';
           }
           return;
         }
@@ -87,7 +87,7 @@ export class PatternHandler {
           !window.location.hash.includes('#/settings') &&
           !window.location.hash.includes('#/health-check')
         ) {
-          window.location.href = '/app/wazuh#/health-check/';
+          window.location.href = '/app/managedsecurity#/health-check/';
         }
         patternList = await SavedObject.getListOfWazuhValidIndexPatterns();
       }

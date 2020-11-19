@@ -22,7 +22,7 @@ import { uiModules } from 'ui/modules';
 import { ConfigHandler } from './config-handler';
 import { CheckDaemonsStatus } from './check-daemon-status';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .service('errorHandler', ErrorHandler)

@@ -12,7 +12,7 @@
 
 import { uiModules } from 'ui/modules';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .service('regionmapsConfig', function() {

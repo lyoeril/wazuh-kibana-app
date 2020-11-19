@@ -38,9 +38,9 @@ export class CommonData {
     this.$route = $route;
     this.refreshInterval = { pause: true, value: 0 };
     this.overviewTabs = {
-      hostMonitoringTabs: ['general', 'fim', 'aws', 'gcp'],
-      systemAuditTabs: ['pm', 'audit', 'oscap', 'ciscat'],
-      securityTabs: ['vuls', 'virustotal', 'osquery', 'docker', 'mitre'],
+      hostMonitoringTabs: ['general', 'firewall', 'fim', 'aws', 'gcp'],
+      systemAuditTabs: ['pm', 'ad', 'audit', 'oscap', 'ciscat'],
+      securityTabs: ['vuls', 'threat', 'virustotal', 'osquery', 'docker', 'mitre'],
       complianceTabs: ['pci', 'gdpr', 'hipaa', 'nist', 'tsc']
     };
 
@@ -146,7 +146,10 @@ export class CommonData {
         virustotal: { group: 'virustotal' },
         osquery: { group: 'osquery' },
         sca: { group: 'sca' },
-        docker: { group: 'docker' }
+        docker: { group: 'docker' },
+        firewall: { group: 'firewall'},
+        threat: { group: 'suricata'},
+        ad: { group: 'windows_security'}
       };
 
       const filters = [];

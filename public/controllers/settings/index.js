@@ -12,7 +12,7 @@
 import { uiModules } from 'ui/modules';
 import { SettingsController } from './settings';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 import { ApiTable } from '../../components/settings/api/api-table';
 import { AddApi } from '../../components/settings/api/add-api';

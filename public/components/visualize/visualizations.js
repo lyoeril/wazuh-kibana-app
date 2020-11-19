@@ -918,5 +918,144 @@ export const visualizations = {
         ]
       }
     ]
+  },
+  ad: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'Events over time',
+            id: 'Wazuh-App-Overview-AD-Events-over-time',
+            width: 50
+          },
+          {
+            title: 'Rule distribution',
+            id: 'Wazuh-App-Overview-AD-Top-5-rules',
+            width: 25
+          },
+          {
+            title: 'Top 5 agents',
+            id: 'Wazuh-App-Overview-AD-Top-5-agents-pie',
+            width: 25
+          },
+     
+        ]
+      },
+      {
+        height: 570,
+        vis: [
+          {
+            title: 'Created Users',
+            id: 'Wazuh-App-Overview-AD-Created-Users'
+          },
+          {
+            title: 'Changed Users',
+            id: 'Wazuh-App-Overview-AD-Changed-Users',
+          },{
+            title: 'Deleted Users',
+            id: 'Wazuh-App-Overview-AD-Deleted-Users',
+          }
+        ]
+      }
+    ]
+  },
+  threat: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'OwlH - NIDS NODE',
+            id: 'Wazuh-App-Overview-THREAT-Alert-NIDS-Nodes',
+            width: 25
+          },
+          {
+            title: 'OwlH - Alerts time',
+            id: 'Wazuh-App-Overview-THREAT-Alert-Time',
+            width: 75
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'OwlH - Alert Severity',
+            id: 'Wazuh-App-Overview-THREAT-Alert-Severity',
+            width: 20
+          },
+          {
+            title: 'OwlH - Alert table',
+            id: 'Wazuh-App-Overview-THREAT-Alert-Table',
+            width: 60
+          },
+          {
+            title: 'OwlH - Alert Categories',
+            id: 'Wazuh-App-Overview-THREAT-Alert-Categories',
+            width: 20
+          }
+        ]
+      },
+      {
+        height: 570,
+        vis: [
+          {
+            title: 'OwlH - Alerts Payload',
+            id: 'Wazuh-App-Overview-THREAT-Alert-Payload',
+            width: 60
+          },
+          {
+            title: 'OwlH - Alert Source IP Table',
+            id: 'Wazuh-App-Overview-THREAT-Alert-SourceIP-Table',
+            width: 20
+          },
+          {
+            title: 'OwlH - Alert Destination IP Table',
+            id: 'Wazuh-App-Overview-THREAT-Alert-DestinationIP-Table',
+            width: 20
+          }
+        ]
+      }
+    ]
+  },
+  firewall: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'Events over time',
+            id: 'Wazuh-App-Overview-SONICWALL-Events-over-time',
+            width: 60
+          },
+          {
+            title: 'Rule distribution',
+            id: 'Wazuh-App-Overview-SONICWALL-Top-5-rules',
+            width: 20
+          },
+          {
+            title: 'Category Overview',
+            id: 'Wazuh-App-Overview-SONICWALL-Category-Pie',
+            width: 20
+          }
+        ]
+      },
+      {
+        height: 530,
+        vis: [
+          {
+            title: 'Website Hits',
+            id: 'Wazuh-App-Overview-SONICWALL-Website-Table-Split',
+            width: 75
+          },
+          {
+            title: 'Top Destinations',
+            id: 'Wazuh-App-Overview-SONICWALL-Vertical-Bar',
+            width: 25
+          }
+        ]
+      }
+    ]
   }
 };

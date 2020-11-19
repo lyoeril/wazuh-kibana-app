@@ -19,7 +19,7 @@ import { Stats } from './components/stats';
 import { SelectAgent } from './components/select-agent';
 import { RequirementCard } from './components/requirement-card';
 
-const app = uiModules.get('app/wazuh', ['react']);
+const app = uiModules.get('app/managedsecurity', ['react']);
 
 app
   .controller('overviewController', OverviewController)

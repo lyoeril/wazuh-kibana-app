@@ -76,7 +76,7 @@ import { updateCurrentPlatform } from './redux/actions/appStateActions';
 import { WzAuthentication } from './react-services/wz-authentication'
 
 import { getAngularModule } from '../../../src/plugins/discover/public/kibana_services';
-const app = getAngularModule('app/wazuh');
+const app = getAngularModule('app/managedsecurity');
 
 app.config([
   '$compileProvider',

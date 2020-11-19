@@ -27,7 +27,7 @@ class WzConfigurationMain extends Component {
     if (this.props.agent.id === '000') {
       breadcrumb = [
         { text: '' },
-        { text: 'Management', href: '/app/wazuh#/manager' },
+        { text: 'Management', href: '/app/managedsecurity#/manager' },
         { text: 'Configuration' }
       ];
     } else {

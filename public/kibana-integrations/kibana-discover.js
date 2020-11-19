@@ -22,7 +22,7 @@ import { uiModules } from 'ui/modules';
 import store from '../redux/store';
 import { updateVis } from '../redux/actions/visualizationsActions';
 
-uiModules.get('app/wazuh', []).directive('kbnDis', [
+uiModules.get('app/managedsecurity', []).directive('kbnDis', [
   function () {
     return {
       restrict: 'E',
@@ -101,7 +101,7 @@ const fetchStatuses = {
 };
 
 const app = uiModules.get('app/discover', []);
-const wazuhApp = getAngularModule('app/wazuh');
+const wazuhApp = getAngularModule('app/managedsecurity');
 app.run(async () => {
   const services = await buildServices(
     npStart.core,
@@ -341,9 +341,9 @@ function discoverController(
   $scope.searchSource.setParent(timeRangeSearchSource);
 
   const pageTitleSuffix = savedSearch.id && savedSearch.title ? `: ${savedSearch.title}` : '';
-  chrome.docTitle.change(`Wazuh${pageTitleSuffix}`);
+  chrome.docTitle.change(`ManagedSecurity${pageTitleSuffix}`);
   const discoverBreadcrumbsTitle = i18n.translate('discover.discoverBreadcrumbTitle', {
-    defaultMessage: 'Wazuh',
+    defaultMessage: 'ManagedSecurity',
   });
 
   if (savedSearch.id && savedSearch.title) {

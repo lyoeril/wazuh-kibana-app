@@ -78,6 +78,8 @@ export class OverviewWelcome extends Component {
                     <EuiSpacer size="s" />
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('general', 'dashboardApp')}
+                      {this.props.extensions.firewall &&
+                        this.buildTabCard('firewall', 'savedObjectsApp')}
                       {this.buildTabCard('fim', 'filebeatApp')}
                       {this.props.extensions.aws &&
                         this.buildTabCard('aws', 'logoAWSMono')}
@@ -91,6 +93,7 @@ export class OverviewWelcome extends Component {
                     <EuiSpacer size="s" />
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('pm', 'advancedSettingsApp')}
+                      {this.buildTabCard('ad', 'savedObjectsApp')}
                       {this.props.extensions.audit &&
                         this.buildTabCard('audit', 'monitoringApp')}
                       {this.props.extensions.oscap &&
@@ -110,6 +113,7 @@ export class OverviewWelcome extends Component {
                     <EuiSpacer size="s" />
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('vuls', 'securityApp')}
+                      {this.buildTabCard('threat', 'pipelineApp')}
                       {this.props.extensions.virustotal &&
                         this.buildTabCard('virustotal', 'savedObjectsApp')}
                       {this.props.extensions.osquery &&

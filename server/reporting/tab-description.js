@@ -125,5 +125,17 @@ export const TabDescription = {
   testConfiguration: {
     title: 'Test your configurations',
     description: 'Check configurations before applying them'
+  },
+  firewall: {
+    title: 'Firewall Alerts',
+    description: 'Events related to network traffic.'
+  },
+  threat: {
+    title: 'Network Traffic Alerts',
+    description: 'Events related to network traffic. These events should be taken seriously'
+  },
+  ad: {
+    title: 'Active Directory',
+    description: 'Events related to created, deleted or changed Active Directory Users'
   }
 };

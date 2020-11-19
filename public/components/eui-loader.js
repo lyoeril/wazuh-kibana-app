@@ -34,7 +34,7 @@ import { NodeList } from './management/cluster/node-list';
 import { HealthCheck } from './health-check/health-check';
 import { WzEmptyPromptNoPermissions } from './common/permissions/prompt';
 
-const app = uiModules.get('app/wazuh', ['react']);
+const app = uiModules.get('app/managedsecurity', ['react']);
 
 app
   .value('EuiIcon', EuiIcon)

@@ -12,7 +12,7 @@
 
 import domtoimage from '../utils/dom-to-image';
 import { getAngularModule } from '../../../../src/plugins/discover/public/kibana_services';
-const app = getAngularModule('app/wazuh');
+const app = getAngularModule('app/managedsecurity');
 
 export class Vis2PNG {
   /**

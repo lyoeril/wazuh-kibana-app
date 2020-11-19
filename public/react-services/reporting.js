@@ -19,7 +19,7 @@ import { RawVisualizations } from '../factories/raw-visualizations';
 import { VisHandlers } from '../factories/vis-handlers';
 import { toastNotifications } from 'ui/notify';
 import { getAngularModule } from '../../../../src/plugins/discover/public/kibana_services';
-const app = getAngularModule('app/wazuh');
+const app = getAngularModule('app/managedsecurity');
 
 export class ReportingService {
   constructor() {
@@ -93,7 +93,7 @@ export class ReportingService {
       );
 
       const array = await this.vis2png.checkArray(idArray);
-      const name = `wazuh-${
+      const name = `ManagedSecurity-${
         isAgents ? 'agents' : 'overview'
       }-${tab}-${(Date.now() / 1000) | 0}.pdf`;
 
@@ -121,7 +121,7 @@ export class ReportingService {
       this.showToast(
         'success',
         'Created report',
-        'Success. Go to Wazuh > Management > Reporting',
+        'Success. Go to ManagedSecurity > Management > Reporting',
         4000
       );
       return;
@@ -168,7 +168,7 @@ export class ReportingService {
       this.showToast(
         'success',
         'Created report',
-        'Success. Go to Wazuh > Management > Reporting',
+        'Success. Go to ManagedSecurity > Management > Reporting',
         4000
       );
       return;

@@ -12,7 +12,7 @@
 import { uiModules } from 'ui/modules';
 import { DevToolsController } from './dev-tools';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
 .controller('devToolsController', DevToolsController);	

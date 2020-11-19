@@ -21,7 +21,7 @@ import { AgentsTable } from './components/agents-table';
 import { MainModule } from '../../components/common/modules/main';
 import { MainSyscollector } from '../../components/agents/syscollector/main';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .controller('agentsController', AgentsController)

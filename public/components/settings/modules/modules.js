@@ -31,6 +31,7 @@ export class EnableModulesWrapper extends Component {
           modules: [
             { name: 'general', default: true, agent: false },
             { name: 'fim', default: true, agent: false },
+            { name: 'firewall', default: false, agent: false },
             { name: 'aws', default: false, agent: false },
             { name: 'gcp', default: false, agent: false }
           ]
@@ -39,6 +40,7 @@ export class EnableModulesWrapper extends Component {
           title: 'Auditing and Policy Monitoring',
           modules: [
             { name: 'pm', default: true, agent: false },
+            { name: 'ad', default: true, agent: false },
             { name: 'sca', default: true, agent: false },
             { name: 'audit', default: true, agent: false },
             { name: 'oscap', default: false, agent: false },
@@ -59,6 +61,7 @@ export class EnableModulesWrapper extends Component {
           title: 'Regulatory Compliance',
           modules: [
             { name: 'pci', default: true, agent: false },
+            { name: 'threat', default: true, agent: false },
             { name: 'nist', default: true, agent: false },
             { name: 'gdpr', default: false, agent: false },
             { name: 'hipaa', default: false, agent: false },

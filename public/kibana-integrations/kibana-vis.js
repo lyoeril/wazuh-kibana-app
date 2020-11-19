@@ -109,7 +109,7 @@ class KibanaVis extends Component {
 
   componentDidMount() {
     this._isMounted = true;
-    const app = getAngularModule("app/wazuh");
+    const app = getAngularModule("app/managedsecurity");
     this.$rootScope = app.$injector.get("$rootScope");
   }
 

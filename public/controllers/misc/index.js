@@ -12,7 +12,7 @@
 import { uiModules } from 'ui/modules';
 import { BlankScreenController } from './blank-screen-controller';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .controller('blankScreenController', BlankScreenController);

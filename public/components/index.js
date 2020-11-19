@@ -21,7 +21,7 @@ import { ClusterTimelions } from '../components/management/cluster/cluster-timel
 import { KibanaVisWrapper } from '../components/management/cluster/cluster-visualization';
 import { ToastNotificationsModal } from '../components/notifications/modal';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 app.value('WzFilterBar', WzFilterBar);
 app.value('WzVisualize', WzVisualize);
 app.value('WzMenuWrapper', WzMenuWrapper);

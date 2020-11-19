@@ -127,11 +127,11 @@ export class WazuhReportingCtrl {
         margin: [40, 20, 0, 0],
         columns: [
           {
-            image: path.join(__dirname, '../../public/img/logo.png'),
+            image: path.join(__dirname, '../../public/img/logop.png'),
             width: 190
           },
           {
-            text: 'info@wazuh.com\nhttps://wazuh.com',
+            text: 'servicedesk@progression.nl\nhttps://progression.nl',
             alignment: 'right',
             margin: [0, 0, 40, 0],
             color: '#00a9e5'
@@ -143,7 +143,7 @@ export class WazuhReportingCtrl {
         return {
           columns: [
             {
-              text: 'Copyright © 2020 Wazuh, Inc.',
+              text: 'Copyright © 2020 Progression B.V.',
               color: '#00a9e5',
               margin: [40, 40, 0, 0]
             },

@@ -9,7 +9,7 @@ export class ModulesHelper {
     const initialTab = location.search().tab;
     return new Promise(resolve => {
       const checkExist = setInterval(() => {
-        const app = getAngularModule('app/wazuh');
+        const app = getAngularModule('app/managedsecurity');
         if (app.discoverScope) {
           clearInterval(checkExist);
           resolve(app.discoverScope);

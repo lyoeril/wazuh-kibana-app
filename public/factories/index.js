@@ -16,7 +16,7 @@ import { VisHandlers } from './vis-handlers';
 import { Vis2PNG } from './vis2png';
 import { uiModules } from 'ui/modules';
 
-const app = uiModules.get('app/wazuh', []);
+const app = uiModules.get('app/managedsecurity', []);
 
 app
   .service('rawVisualizations', RawVisualizations)

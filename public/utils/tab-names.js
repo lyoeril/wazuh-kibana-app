@@ -67,5 +67,8 @@ export const TabNames = {
   'client-buffer': 'Anti-flooding settings',
   sca: 'SCA',
   'docker-listener': 'Docker listener',
-  docker: 'Docker listener'
+  docker: 'Docker listener',
+  firewall: 'Firewall',
+  threat: 'Network Alerts',
+  ad: "Active Directory"
 };

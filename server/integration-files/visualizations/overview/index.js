@@ -27,6 +27,9 @@ import vuls from './overview-vuls';
 import mitre from './overview-mitre';
 import osquery from './overview-osquery';
 import docker from './overview-docker';
+import ad from './overview-ad';
+import firewall from './overview-firewall'
+import threat from './overview-threat';
 
 export {
   audit,
@@ -46,5 +49,8 @@ export {
   vuls,
   mitre,
   osquery,
-  docker
+  docker,
+  ad,
+  firewall,
+  threat
 };
