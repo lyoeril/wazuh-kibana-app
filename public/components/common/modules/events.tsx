@@ -39,7 +39,7 @@ export class Events extends Component {
   async componentDidMount() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    const app = getAngularModule('app/wazuh');
+    const app = getAngularModule('app/managedsecurity');
     this.$rootScope = app.$injector.get('$rootScope');
     this.$rootScope.showModuleEvents = this.props.section;
     const scope = await ModulesHelper.getDiscoverScope();

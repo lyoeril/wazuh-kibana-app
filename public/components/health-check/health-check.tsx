@@ -24,7 +24,7 @@ export class HealthCheck extends Component {
         };
     }
     async componentDidMount() {
-        const app = getAngularModule('app/wazuh');
+        const app = getAngularModule('app/managedsecurity');
         this.$rootScope = app.$injector.get('$rootScope');
         this.load();
     }
@@ -309,7 +309,7 @@ export class HealthCheck extends Component {
                         setTimeout(() => {
                             const params = this.$rootScope.previousParams || {};
                             var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-                            const url = 'wazuh#' + (this.$rootScope.previousLocation || '') + '?' + queryString;
+                            const url = 'managedsecurity#' + (this.$rootScope.previousLocation || '') + '?' + queryString;
                             window.location.assign(
                                 chrome.addBasePath(url)
                             );
@@ -324,11 +324,11 @@ export class HealthCheck extends Component {
     }
 
     goApp() {
-        window.location.href = '/app/wazuh#/settings';
+        window.location.href = '/app/managedsecurity#/settings';
     }
 
     render() {
-        const logo_url = chrome.addBasePath('/plugins/wazuh/img/icon_blue.svg');
+        const logo_url = chrome.addBasePath('/plugins/managedsecurity/img/icon_blue.svg');
         return (
             <div className="health-check">
                 <EuiLoadingSpinner className="health-check-loader" />
