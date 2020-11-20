@@ -63,7 +63,9 @@ class WzMenuOverview extends Component {
       tsc: { id: 'tsc', text: 'TSC' },
       ad: { id: 'ad', text: 'Active Directory' },
       threat: { id: 'threat', text: 'Network Threats' },
-      firewall: { id: 'firewall', text: 'Firewall' }
+      firewall: { id: 'firewall', text: 'Firewall' },
+      office365: { id: 'office365', text: 'Office365' },
+      command: { id: 'command', text: 'Command and Control' }
     };
 
     this.wzReq = WzRequest;
@@ -147,6 +149,7 @@ class WzMenuOverview extends Component {
     let securityInformationItems = [
       this.overviewSections.general,
       this.overviewSections.firewall,
+      this.overviewSections.office365,
       this.overviewSections.fim,
       this.overviewSections.aws,
       this.overviewSections.gcp
@@ -160,6 +163,7 @@ class WzMenuOverview extends Component {
     let threatDetectionItems = [
       this.overviewSections.virustotal,
       this.overviewSections.threat,
+      this.overviewSections.command,
       this.overviewSections.osquery,
       this.overviewSections.mitre
     ];

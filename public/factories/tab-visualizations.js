@@ -59,6 +59,8 @@ export class TabVisualizations {
       aws: 8,
       firewall: 5,
       threat: 8,
+      office365: 5,
+      command: 5,
       gcp: 5,
       virustotal: 5,
       osquery: 6,

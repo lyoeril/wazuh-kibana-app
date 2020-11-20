@@ -70,5 +70,7 @@ export const TabNames = {
   docker: 'Docker listener',
   firewall: 'Firewall',
   threat: 'Network Alerts',
-  ad: "Active Directory"
+  ad: "Active Directory",
+  office365: 'Office 365',
+  command: "Command and Control"
 };

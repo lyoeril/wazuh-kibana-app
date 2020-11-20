@@ -137,5 +137,13 @@ export const TabDescription = {
   ad: {
     title: 'Active Directory',
     description: 'Events related to created, deleted or changed Active Directory Users'
+  },
+  office365: {
+    title: 'Microsoft Office 365',
+    description: 'Events related to activity within Microsoft Office 365'
+  },
+  command: {
+    title: 'Command and Control',
+    description: 'Events related to user behavior and command executions'
   }
 };

@@ -30,6 +30,8 @@ import docker from './overview-docker';
 import ad from './overview-ad';
 import firewall from './overview-firewall'
 import threat from './overview-threat';
+import office365 from './overview-office365';
+import command from './overview-command';
 
 export {
   audit,
@@ -52,5 +54,7 @@ export {
   docker,
   ad,
   firewall,
-  threat
+  threat,
+  office365,
+  command
 };

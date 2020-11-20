@@ -1057,5 +1057,83 @@ export const visualizations = {
         ]
       }
     ]
+  },
+  office365: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'Events over time',
+            id: 'Wazuh-App-Overview-SONICWALL-Events-over-time',
+            width: 60
+          },
+          {
+            title: 'Rule distribution',
+            id: 'Wazuh-App-Overview-SONICWALL-Top-5-rules',
+            width: 20
+          },
+          {
+            title: 'Category Overview',
+            id: 'Wazuh-App-Overview-SONICWALL-Category-Pie',
+            width: 20
+          }
+        ]
+      },
+      {
+        height: 530,
+        vis: [
+          {
+            title: 'Website Hits',
+            id: 'Wazuh-App-Overview-SONICWALL-Website-Table-Split',
+            width: 75
+          },
+          {
+            title: 'Top Destinations',
+            id: 'Wazuh-App-Overview-SONICWALL-Vertical-Bar',
+            width: 25
+          }
+        ]
+      }
+    ]
+  },
+  command: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'Events over time',
+            id: 'Wazuh-App-Overview-SONICWALL-Events-over-time',
+            width: 60
+          },
+          {
+            title: 'Rule distribution',
+            id: 'Wazuh-App-Overview-SONICWALL-Top-5-rules',
+            width: 20
+          },
+          {
+            title: 'Category Overview',
+            id: 'Wazuh-App-Overview-SONICWALL-Category-Pie',
+            width: 20
+          }
+        ]
+      },
+      {
+        height: 530,
+        vis: [
+          {
+            title: 'Website Hits',
+            id: 'Wazuh-App-Overview-SONICWALL-Website-Table-Split',
+            width: 75
+          },
+          {
+            title: 'Top Destinations',
+            id: 'Wazuh-App-Overview-SONICWALL-Vertical-Bar',
+            width: 25
+          }
+        ]
+      }
+    ]
   }
 };

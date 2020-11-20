@@ -164,6 +164,18 @@ export const EventsSelectedFiles = {
     'rule.description',
     'rule.level',
     'rule.id',
+  ],  
+  office365: [
+    'agent.id',
+    'rule.description',
+    'rule.level',
+    'rule.id',
+  ],
+  command: [
+    'agent.id',
+    'rule.description',
+    'rule.level',
+    'rule.id',
   ],
   
 };

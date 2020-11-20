@@ -32,6 +32,7 @@ export class EnableModulesWrapper extends Component {
             { name: 'general', default: true, agent: false },
             { name: 'fim', default: true, agent: false },
             { name: 'firewall', default: false, agent: false },
+            { name: 'office365', default: false, agent: false },
             { name: 'aws', default: false, agent: false },
             { name: 'gcp', default: false, agent: false }
           ]
@@ -51,6 +52,8 @@ export class EnableModulesWrapper extends Component {
           title: 'Threat Detection and Response',
           modules: [
             { name: 'vuls', default: true, agent: false },
+            { name: 'threat', default: true, agent: false },
+            { name: 'command', default: true, agent: false },
             { name: 'mitre', default: true, agent: false },
             { name: 'virustotal', default: false, agent: false },
             { name: 'osquery', default: false, agent: false },
@@ -61,7 +64,6 @@ export class EnableModulesWrapper extends Component {
           title: 'Regulatory Compliance',
           modules: [
             { name: 'pci', default: true, agent: false },
-            { name: 'threat', default: true, agent: false },
             { name: 'nist', default: true, agent: false },
             { name: 'gdpr', default: false, agent: false },
             { name: 'hipaa', default: false, agent: false },
