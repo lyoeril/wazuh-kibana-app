@@ -328,7 +328,7 @@ export class HealthCheck extends Component {
     }
 
     render() {
-        const logo_url = chrome.addBasePath('/plugins/managedsecurity/img/icon_blue.svg');
+        const logo_url = chrome.addBasePath('/plugins/managedsecurity/img/emblem.png');
         return (
             <div className="health-check">
                 <EuiLoadingSpinner className="health-check-loader" />

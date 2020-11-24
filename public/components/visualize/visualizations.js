@@ -1064,34 +1064,44 @@ export const visualizations = {
         height: 290,
         vis: [
           {
-            title: 'Events over time',
-            id: 'Wazuh-App-Overview-SONICWALL-Events-over-time',
-            width: 60
+            title: 'IP/Operation Pie',
+            id: 'Wazuh-App-Overview-OFFICE365-Operations',
+            width: 25
           },
           {
-            title: 'Rule distribution',
-            id: 'Wazuh-App-Overview-SONICWALL-Top-5-rules',
-            width: 20
-          },
-          {
-            title: 'Category Overview',
-            id: 'Wazuh-App-Overview-SONICWALL-Category-Pie',
-            width: 20
+            title: 'Alerts Time',
+            id: 'Wazuh-App-Overview-OFFICE365-Overview',
+            width: 75
           }
         ]
       },
       {
-        height: 530,
+        height: 400,
         vis: [
           {
-            title: 'Website Hits',
-            id: 'Wazuh-App-Overview-SONICWALL-Website-Table-Split',
-            width: 75
+            title: 'User Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-User',
+            width: 25
           },
           {
-            title: 'Top Destinations',
-            id: 'Wazuh-App-Overview-SONICWALL-Vertical-Bar',
+            title: 'IP Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-IP',
             width: 25
+          },
+          {
+            title: 'Operations Overview',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-OperationView',
+            width: 50
+          },
+        ]
+      },
+      {
+        height: 600,
+        vis: [
+          {
+            title: 'User Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-SplitRules',
+            width: 100
           }
         ]
       }
@@ -1103,34 +1113,44 @@ export const visualizations = {
         height: 290,
         vis: [
           {
-            title: 'Events over time',
-            id: 'Wazuh-App-Overview-SONICWALL-Events-over-time',
-            width: 60
+            title: 'System/Users Table',
+            id: 'Wazuh-App-Overview-COMMAND-SourceTable',
+            width: 25
           },
           {
-            title: 'Rule distribution',
-            id: 'Wazuh-App-Overview-SONICWALL-Top-5-rules',
-            width: 20
-          },
-          {
-            title: 'Category Overview',
-            id: 'Wazuh-App-Overview-SONICWALL-Category-Pie',
-            width: 20
+            title: 'Overview',
+            id: 'Wazuh-App-Overview-COMMAND-Overview',
+            width: 75
           }
         ]
       },
       {
-        height: 530,
+        height: 400,
         vis: [
           {
-            title: 'Website Hits',
-            id: 'Wazuh-App-Overview-SONICWALL-Website-Table-Split',
-            width: 75
+            title: 'Alert Level',
+            id: 'Wazuh-App-Overview-COMMAND-Alert-Level',
+            width: 20
           },
           {
-            title: 'Top Destinations',
-            id: 'Wazuh-App-Overview-SONICWALL-Vertical-Bar',
-            width: 25
+            title: 'Executed Powershell Commands',
+            id: 'Wazuh-App-Overview-COMMAND-Powershel-Table',
+            width: 80
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Source IP Table',
+            id: 'Wazuh-App-Overview-COMMAND-SourceTableIP',
+            width: 20
+          },
+          {
+            title: 'Executed Commands (CMD)',
+            id: 'Wazuh-App-Overview-COMMAND-CMD-Table',
+            width: 80
           }
         ]
       }

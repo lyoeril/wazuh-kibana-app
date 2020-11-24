@@ -117,6 +117,7 @@ export class OverviewWelcome extends Component {
                       {this.buildTabCard('vuls', 'securityApp')}
                       {this.buildTabCard('threat', 'pipelineApp')}
                       {this.buildTabCard('command', 'savedObjectsApp')}
+                      {this.buildTabCard('sentinelone', 'savedObjectsApp')}
                       {this.props.extensions.virustotal &&
                         this.buildTabCard('virustotal', 'savedObjectsApp')}
                       {this.props.extensions.osquery &&
