@@ -85,5 +85,15 @@ export const ModulesDefaults = {
     init: 'dashboard',
     tabs: [{ id: 'dashboard', name: 'Dashboard' }, { id: 'events', name: 'Events' }],
     buttons: ['reporting']
+  },
+  office365: {
+    init: 'dashboard',
+    tabs: [{ id: 'dashboard', name: 'Dashboard' }, { id: 'events', name: 'Events' }],
+    buttons: ['reporting']
+  },  
+  command: {
+    init: 'dashboard',
+    tabs: [{ id: 'dashboard', name: 'Dashboard' }, { id: 'events', name: 'Events' }],
+    buttons: ['reporting']
   }
 };

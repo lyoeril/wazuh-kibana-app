@@ -78,8 +78,10 @@ export class OverviewWelcome extends Component {
                     <EuiSpacer size="s" />
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('general', 'dashboardApp')}
+                      {this.props.extensions.office365 &&
+                        this.buildTabCard('office365', 'securityAnalyticsApp')}
                       {this.props.extensions.firewall &&
-                        this.buildTabCard('firewall', 'savedObjectsApp')}
+                        this.buildTabCard('firewall', 'indexPatternApp')}
                       {this.buildTabCard('fim', 'filebeatApp')}
                       {this.props.extensions.aws &&
                         this.buildTabCard('aws', 'logoAWSMono')}
@@ -114,6 +116,8 @@ export class OverviewWelcome extends Component {
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('vuls', 'securityApp')}
                       {this.buildTabCard('threat', 'pipelineApp')}
+                      {this.buildTabCard('command', 'savedObjectsApp')}
+                      {this.buildTabCard('sentinelone', 'savedObjectsApp')}
                       {this.props.extensions.virustotal &&
                         this.buildTabCard('virustotal', 'savedObjectsApp')}
                       {this.props.extensions.osquery &&
@@ -121,6 +125,7 @@ export class OverviewWelcome extends Component {
                       {this.props.extensions.docker &&
                         this.buildTabCard('docker', 'logoDocker')}
                       {this.buildTabCard('mitre', 'spacesApp')}
+
                       {/* TODO- Change "spacesApp" icon*/}
                     </EuiFlexGrid>
                   </EuiPanel>

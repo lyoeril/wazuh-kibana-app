@@ -67,7 +67,7 @@ export class WzRequest {
           wzMisc.setApiIsDown(true);
 
           if (!window.location.hash.includes('#/settings')) {
-            window.location.href = '/app/wazuh#/health-check';
+            window.location.href = '/app/managedsecurity#/health-check';
           }
           return;
         }

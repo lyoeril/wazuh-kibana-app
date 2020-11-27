@@ -14,7 +14,7 @@ import React, { Component, Fragment } from 'react';
 import { getAngularModule } from '../../../../../../src/plugins/discover/public/kibana_services';
 import { EuiLoadingSpinner, EuiSpacer } from '@elastic/eui';
 
-const app = getAngularModule('app/wazuh');
+const app = getAngularModule('app/managedsecurity');
 
 export class Loader extends Component {
   constructor(props) {

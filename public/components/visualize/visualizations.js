@@ -1057,5 +1057,103 @@ export const visualizations = {
         ]
       }
     ]
+  },
+  office365: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'IP/Operation Pie',
+            id: 'Wazuh-App-Overview-OFFICE365-Operations',
+            width: 25
+          },
+          {
+            title: 'Alerts Time',
+            id: 'Wazuh-App-Overview-OFFICE365-Overview',
+            width: 75
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'User Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-User',
+            width: 25
+          },
+          {
+            title: 'IP Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-IP',
+            width: 25
+          },
+          {
+            title: 'Operations Overview',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-OperationView',
+            width: 50
+          },
+        ]
+      },
+      {
+        height: 600,
+        vis: [
+          {
+            title: 'User Table',
+            id: 'Wazuh-App-Overview-OFFICE365-Table-SplitRules',
+            width: 100
+          }
+        ]
+      }
+    ]
+  },
+  command: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'System/Users Table',
+            id: 'Wazuh-App-Overview-COMMAND-SourceTable',
+            width: 25
+          },
+          {
+            title: 'Overview',
+            id: 'Wazuh-App-Overview-COMMAND-Overview',
+            width: 75
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Alert Level',
+            id: 'Wazuh-App-Overview-COMMAND-Alert-Level',
+            width: 20
+          },
+          {
+            title: 'Executed Powershell Commands',
+            id: 'Wazuh-App-Overview-COMMAND-Powershel-Table',
+            width: 80
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Source IP Table',
+            id: 'Wazuh-App-Overview-COMMAND-SourceTableIP',
+            width: 20
+          },
+          {
+            title: 'Executed Commands (CMD)',
+            id: 'Wazuh-App-Overview-COMMAND-CMD-Table',
+            width: 80
+          }
+        ]
+      }
+    ]
   }
 };

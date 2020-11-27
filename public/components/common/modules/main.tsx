@@ -40,7 +40,7 @@ export class MainModule extends Component {
       switchModule: false,
       showAgentInfo: false
     };
-    const app = getAngularModule('app/wazuh');
+    const app = getAngularModule('app/managedsecurity');
     this.$rootScope = app.$injector.get('$rootScope');
   }
 

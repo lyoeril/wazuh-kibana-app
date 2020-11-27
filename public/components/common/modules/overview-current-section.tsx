@@ -43,13 +43,13 @@ class WzCurrentOverviewSection extends Component {
     if(TabDescription[this.props.currentTab]){
       const breadcrumb = currentAgent.id ? [
         { text: '' },
-        { text: 'Modules', href: '/app/wazuh#/overview' },
+        { text: 'Modules', href: '/app/managedsecurity#/overview' },
         { agent: currentAgent },
         { text: TabDescription[this.props.currentTab].title},
       ] :
       [
         { text: '' },
-        { text: 'Modules', href: '/app/wazuh#/overview' },
+        { text: 'Modules', href: '/app/managedsecurity#/overview' },
         
         
         { text: TabDescription[this.props.currentTab].title},

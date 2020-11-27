@@ -131,7 +131,7 @@ export class WazuhReportingCtrl {
             width: 190
           },
           {
-            text: 'servicedesk@progression.nl\nhttps://progression.nl',
+            text: 'servicedesk@progression.nl\nhttps://www.progression.nl',
             alignment: 'right',
             margin: [0, 0, 40, 0],
             color: '#00a9e5'
