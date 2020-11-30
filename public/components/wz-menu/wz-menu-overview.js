@@ -66,7 +66,7 @@ class WzMenuOverview extends Component {
       firewall: { id: 'firewall', text: 'Firewall' },
       office365: { id: 'office365', text: 'Office365' },
       command: { id: 'command', text: 'Command and Control' },
-      command: { id: 'sentinelone', text: 'SentinelOne' }
+      sentinelone: { id: 'sentinelone', text: 'SentinelOne' }
     };
 
     this.wzReq = WzRequest;
