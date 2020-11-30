@@ -1155,5 +1155,55 @@ export const visualizations = {
         ]
       }
     ]
+  },  
+  sentinelone: {
+    rows: [
+      {
+        height: 290,
+        vis: [
+          {
+            title: 'Alerts',
+            id: 'Wazuh-App-Overview-SentinelOne-Pie',
+            width: 25
+          },
+          {
+            title: 'Overview',
+            id: 'Wazuh-App-Overview-SentinelOne-Overview',
+            width: 75
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Threats',
+            id: 'Wazuh-App-Overview-SentinelOne-Table-Threat',
+            width: 100
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Event Resolution',
+            id: 'Wazuh-App-Overview-SentinelOne-Table-Solved',
+            width: 100
+          }
+        ]
+      },
+      {
+        height: 400,
+        vis: [
+          {
+            title: 'Collection of events',
+            id: 'Wazuh-App-Overview-SentinelOne-Table-All',
+            width: 100
+          }
+        ]
+      }
+
+    ]
   }
 };

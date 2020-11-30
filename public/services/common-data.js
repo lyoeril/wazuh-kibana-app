@@ -40,7 +40,7 @@ export class CommonData {
     this.overviewTabs = {
       hostMonitoringTabs: ['general', 'office365', 'firewall', 'fim', 'aws', 'gcp'],
       systemAuditTabs: ['pm', 'ad', 'audit', 'oscap', 'ciscat'],
-      securityTabs: ['vuls', 'threat', 'command', 'virustotal', 'osquery', 'docker', 'mitre'],
+      securityTabs: ['vuls', 'threat', 'command', 'sentinelone', 'virustotal', 'osquery', 'docker', 'mitre'],
       complianceTabs: ['pci', 'gdpr', 'hipaa', 'nist', 'tsc']
     };
 
@@ -152,6 +152,7 @@ export class CommonData {
         ad: { group: 'windows_security'},
         office365: { group: 'office_365'},
         command: { group: 'attack_detection'},
+        sentinelone: { group: 'sentinelone'},
       };
 
       const filters = [];

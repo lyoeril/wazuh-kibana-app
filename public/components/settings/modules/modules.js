@@ -54,6 +54,7 @@ export class EnableModulesWrapper extends Component {
             { name: 'vuls', default: true, agent: false },
             { name: 'threat', default: true, agent: false },
             { name: 'command', default: true, agent: false },
+            { name: 'sentinelone', default: true, agent: false },
             { name: 'mitre', default: true, agent: false },
             { name: 'virustotal', default: false, agent: false },
             { name: 'osquery', default: false, agent: false },

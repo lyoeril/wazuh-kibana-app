@@ -72,5 +72,6 @@ export const TabNames = {
   threat: 'Network Alerts',
   ad: "Active Directory",
   office365: 'Office 365',
-  command: "Command and Control"
+  command: "Command and Control",
+  sentinelone: "SentinelOne"
 };

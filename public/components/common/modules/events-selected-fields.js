@@ -174,6 +174,14 @@ export const EventsSelectedFiles = {
   command: [
     'agent.id',
     'rule.description',
+    'data.win.system.message',
+    'rule.level',
+    'rule.id',
+  ],  
+  sentinelone: [
+    'agent.id',
+    'rule.description',
+    'data.win.system.message',
     'rule.level',
     'rule.id',
   ],

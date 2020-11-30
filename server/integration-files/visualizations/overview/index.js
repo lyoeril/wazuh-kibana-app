@@ -32,6 +32,7 @@ import firewall from './overview-firewall'
 import threat from './overview-threat';
 import office365 from './overview-office365';
 import command from './overview-command';
+import sentinelone from './overview-sentinelone';
 
 export {
   audit,
@@ -56,5 +57,6 @@ export {
   firewall,
   threat,
   office365,
-  command
+  command,
+  sentinelone
 };

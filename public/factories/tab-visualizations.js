@@ -61,6 +61,7 @@ export class TabVisualizations {
       threat: 8,
       office365: 5,
       command: 5,
+      sentinelone: 4,
       gcp: 5,
       virustotal: 5,
       osquery: 6,

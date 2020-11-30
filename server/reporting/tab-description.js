@@ -145,5 +145,9 @@ export const TabDescription = {
   command: {
     title: 'Command and Control',
     description: 'Events related to user behavior and command executions'
+  },
+  sentinelone: {
+    title: 'SentinelOne',
+    description: 'Events related to the threat detection engine SentinelOne'
   }
 };

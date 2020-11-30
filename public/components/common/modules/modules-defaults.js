@@ -95,5 +95,10 @@ export const ModulesDefaults = {
     init: 'dashboard',
     tabs: [{ id: 'dashboard', name: 'Dashboard' }, { id: 'events', name: 'Events' }],
     buttons: ['reporting']
+  },
+  sentinelone: {
+    init: 'dashboard',
+    tabs: [{ id: 'dashboard', name: 'Dashboard' }, { id: 'events', name: 'Events' }],
+    buttons: ['reporting']
   }
 };

@@ -65,7 +65,8 @@ class WzMenuOverview extends Component {
       threat: { id: 'threat', text: 'Network Threats' },
       firewall: { id: 'firewall', text: 'Firewall' },
       office365: { id: 'office365', text: 'Office365' },
-      command: { id: 'command', text: 'Command and Control' }
+      command: { id: 'command', text: 'Command and Control' },
+      command: { id: 'sentinelone', text: 'SentinelOne' }
     };
 
     this.wzReq = WzRequest;
@@ -164,6 +165,7 @@ class WzMenuOverview extends Component {
       this.overviewSections.virustotal,
       this.overviewSections.threat,
       this.overviewSections.command,
+      this.overviewSections.sentinelone,
       this.overviewSections.osquery,
       this.overviewSections.mitre
     ];
