@@ -1,12 +1,12 @@
 {
-  "name": "wazuh",
+  "name": "managedsecurity",
   "version": "4.0.1",
-  "revision": "4009",
-  "code": "4009-0",
+  "revision": "4010",
+  "code": "4010-0",
   "kibana": {
     "version": "7.9.1"
   },
-  "description": "Wazuh app",
+  "description": "ManagedSecurity app",
   "main": "index.js",
   "keywords": [
     "kibana",
@@ -32,7 +32,7 @@
     "kbn": "node ../../scripts/kbn",
     "es": "node ../../scripts/es",
     "start": "plugin-helpers start",
-    "prebuild": "tsc; find . -name \"*.ts*\" -type f -not -path \"./node_modules/*\" -delete",
+    "prebuild": "",
     "build": "plugin-helpers build",
     "test": "_mocha test/**/*",
     "test:ui:runner": "node ../../scripts/functional_test_runner.js",

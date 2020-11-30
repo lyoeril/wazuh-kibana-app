@@ -116,8 +116,8 @@ export class OverviewWelcome extends Component {
                     <EuiFlexGrid columns={2}>
                       {this.buildTabCard('vuls', 'securityApp')}
                       {this.buildTabCard('threat', 'pipelineApp')}
-                      {this.buildTabCard('command', 'savedObjectsApp')}
-                      {this.buildTabCard('sentinelone', 'savedObjectsApp')}
+                      {this.buildTabCard('command', 'upgradeAssistantApp')}
+                      {this.buildTabCard('sentinelone', 'watchesApp')}
                       {this.props.extensions.virustotal &&
                         this.buildTabCard('virustotal', 'savedObjectsApp')}
                       {this.props.extensions.osquery &&
