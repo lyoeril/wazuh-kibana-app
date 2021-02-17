@@ -38,7 +38,7 @@ jspm_packages/
 
 # Visual Studio Code directory
 .vscode/
-
+.vs
 # Typescript v1 declaration files
 typings/
 
