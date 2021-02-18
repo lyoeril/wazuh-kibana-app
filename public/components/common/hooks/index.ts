@@ -1,6 +1,6 @@
 /*
  * Wazuh app - React hooks
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -25,3 +25,5 @@ export { useWindowSize } from './useWindowSize';
 export { useUserPermissions, useUserPermissionsRequirements, useUserPermissionsPrivate } from './useUserPermissions';
 
 export { useUserRoles, useUserRolesRequirements, useUserRolesPrivate } from './useUserRoles';
+
+export { useRefreshAngularDiscover } from './useResfreshAngularDiscover'

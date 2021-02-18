@@ -1,6 +1,6 @@
 /*
  * Wazuh app - React component for registering agents.
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -24,7 +24,7 @@ import {
   EuiIcon
 } from '@elastic/eui';
 
-import { toastNotifications } from 'ui/notify';
+import { getToasts }  from '../../kibana-services';
 import { updateWazuhNotReadyYet } from '../../redux/actions/appStateActions';
 import { clusterReq, restartClusterOrManager } from '../../controllers/management/components/management/configuration/utils/wz-fetch';
 import { connect } from 'react-redux';
@@ -54,7 +54,7 @@ class WzRestartClusterManagerCallout extends Component<IWzRestartClusterManagerC
     this.setState({ warningRestartModalVisible: !this.state.warningRestartModalVisible })
   }
   showToast(color, title, text = '', time = 3000){
-    toastNotifications.add({
+    getToasts().add({
       color,
       title,
       text,
@@ -65,9 +65,8 @@ class WzRestartClusterManagerCallout extends Component<IWzRestartClusterManagerC
     try{
       this.setState({ warningRestarting: true, warningRestartModalVisible: false});
       const data = await restartClusterOrManager(this.props.updateWazuhNotReadyYet);
-      // this.setState({ warningRestarting: false });
       this.props.onRestarted();
-      this.showToast('success', `${data.restarted === 'cluster' ? 'Restarting cluster, it will take up to 30 seconds.': 'Manager was restarted'}`)
+      this.showToast('success', `${data.restarted} was restarted`);
     }catch(error){
       this.setState({ warningRestarting: false });
       this.props.updateWazuhNotReadyYet(false);

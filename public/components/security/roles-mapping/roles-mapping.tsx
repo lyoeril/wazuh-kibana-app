@@ -18,6 +18,7 @@ import { Rule } from '../rules/types/rule.type';
 import { Role } from '../roles/types/role.type';
 import RolesServices from '../roles/services';
 import RulesServices from '../rules/services';
+import { useSelector } from 'react-redux';
 
 export const RolesMapping = () => {
   const [isEditingRule, setIsEditingRule] = useState(false);
@@ -28,6 +29,7 @@ export const RolesMapping = () => {
   const [rolesEquivalences, setRolesEquivalences] = useState({});
   const [rolesLoading, roles, rolesError] = useApiService<Role[]>(RolesServices.GetRoles, {});
   const [internalUsers, setInternalUsers] = useState([]);
+  const currentPlatform = useSelector((state: any) => state.appStateReducers.currentPlatform);
 
   useEffect(() => {
     initData();
@@ -42,7 +44,7 @@ export const RolesMapping = () => {
       setRolesEquivalences(_rolesObject);
     }
     if (rolesError) {
-      ErrorHandler.error('There was an error loading roles');
+      ErrorHandler.handle('There was an error loading roles');
     }
   }, [rolesLoading]);
 
@@ -61,7 +63,7 @@ export const RolesMapping = () => {
       }).sort((a, b) => (a.user > b.user) ? 1 : (a.user < b.user) ? -1 : 0);      
       setInternalUsers(_users);
     } catch (error) {
-      ErrorHandler.error('There was an error loading internal users');
+      ErrorHandler.handle('There was an error loading internal users');
     }
   };
 
@@ -70,14 +72,16 @@ export const RolesMapping = () => {
       const _rules = await RulesServices.GetRules();
       setRules(_rules);
     } catch (error) {
-      ErrorHandler.error('There was an error loading rules');
+      ErrorHandler.handle('There was an error loading rules');
     }
   };
 
   const initData = async () => {
     setLoadingTable(true);
     await getRules();
-    await getInternalUsers();
+    if(currentPlatform){
+      await getInternalUsers();
+    };
     setLoadingTable(false);
   };
 
@@ -104,6 +108,7 @@ export const RolesMapping = () => {
           roles={roles}
           internalUsers={internalUsers}
           onSave={async () => await updateRoles()}
+          currentPlatform={currentPlatform}
         />
       </EuiOverlayMask>
     );
@@ -126,6 +131,7 @@ export const RolesMapping = () => {
           roles={roles}
           internalUsers={internalUsers}
           onSave={async () => await updateRoles()}
+          currentPlatform={currentPlatform}
         />
       </EuiOverlayMask>
     );

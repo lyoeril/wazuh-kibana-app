@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Tab name equivalence
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -426,6 +426,15 @@ export const visualizations = {
           {
             title: 'Last files',
             id: 'Wazuh-App-Agents-Virustotal-Files-Table'
+          }
+        ]
+      },
+      {
+        hide: true,
+        vis: [
+          {
+            title: 'Alerts summary',
+            id: 'Wazuh-App-Agents-Virustotal-Alerts-summary'
           }
         ]
       }

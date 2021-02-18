@@ -1,6 +1,6 @@
 /*
  * Wazuh app - App State Actions
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -157,4 +157,15 @@ export const updateToastNotificationsModal = toastNotification => {
     type: 'UPDATE_TOAST_NOTIFICATIONS_MODAL',
     toastNotification
   };
- };
+};
+
+/**
+ * Updates ClusterOrManagerConfiguration in the appState store
+ * @param clusterStatus
+ */
+export const updateClusterStatus = (clusterStatus) => {
+  return {
+    type: 'UPDATE_CLUSTER_STATUS',
+    clusterStatus,
+  };
+};

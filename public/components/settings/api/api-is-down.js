@@ -1,7 +1,7 @@
 /*
  * Wazuh app - React component for the adding an API entry form.
  *
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -108,10 +108,11 @@ export class ApiIsDown extends Component {
     const apiExample = `# Example Wazuh API configuration
 hosts:
     - production:
-        url: http://172.16.1.2
+        url: https://172.16.1.2
         port: 55000
         username: wazuh-wui
         password: wazuh-wui
+        run_as: false
 `;
 
     const checkConnectionChildren = (
@@ -225,7 +226,7 @@ hosts:
             <EuiText>
               Review the settings in the{' '}
               <EuiCode>
-                /usr/share/kibana/optimize/wazuh/config/wazuh.yml
+                /usr/share/kibana/data/wazuh/config/wazuh.yml
               </EuiCode>{' '}
               file.
             </EuiText>

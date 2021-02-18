@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Integrity monitoring components
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -138,38 +138,58 @@ export class Events extends Component {
 
   }
 
+  checkDiscoverTableDetailsMutation(element, mutation, discoverRowsData, options) {
+    const rowTable = element.previousElementSibling;
+    const discoverTableRows = document.querySelectorAll(`.kbn-table tbody tr.kbnDocTable__row`);
+    const rowIndex = Array.from(discoverTableRows).indexOf(rowTable);
+    const rowDetailsFields = mutation.addedNodes[0].querySelectorAll('.kbnDocViewer__field');
+    if(rowDetailsFields){
+      rowDetailsFields.forEach((rowDetailField) => {
+        this.checkUnknownFields(rowDetailField);
+        const fieldName = rowDetailField.childNodes[0].childNodes[1].textContent || "";
+        const fieldCell = rowDetailField.parentNode.childNodes && rowDetailField.parentNode.childNodes[2].childNodes[0];
+        if(!fieldCell){ return };        
+        enhanceDiscoverEventsCell(fieldName, (fieldCell || {}).textContent || '', discoverRowsData[rowIndex], fieldCell, options);
+      });
+    };
+  }
+
+  checkUnknownFields(rowDetailField) {
+    const fieldCell = rowDetailField.parentNode.childNodes && rowDetailField.parentNode.childNodes[2];
+    if(fieldCell.querySelector('svg[data-test-subj="noMappingWarning"]')) {
+      this.refreshKnownFields();
+    }
+  }
+
+   refreshKnownFields = async () => {
+    if (!this.state.hasRefreshedKnownFields) { 
+      try {
+        this.setState({ hasRefreshedKnownFields: true, isRefreshing: true });
+        await PatternHandler.refreshIndexPattern();
+
+        this.setState({ isRefreshing: false });
+        this.reloadToast()        
+
+      } catch (err) {
+        this.setState({ isRefreshing: false });
+        this.errorToast(err);
+      }
+    } else if (this.state.isRefreshing) {
+      await new Promise(r => setTimeout(r, 150));
+      await this.refreshKnownFields();
+    }
+  }
+
   enhanceDiscoverTableRowDetailsAddObserver(element, discoverRowsData, options){
     // Open for first time the row details
     const observer = new MutationObserver((mutationsList) => {
       mutationsList.forEach(mutation => {
         if (mutation.type === 'childList' && mutation.addedNodes && mutation.addedNodes[0]) {
-          const rowTable = element.previousElementSibling;
-          const discoverTableRows = document.querySelectorAll(`.kbn-table tbody tr.kbnDocTable__row`);
-          const rowIndex = Array.from(discoverTableRows).indexOf(rowTable);
-          const rowDetailsFields = mutation.addedNodes[0].querySelectorAll('.kbnDocViewer__field');
-          if(rowDetailsFields){
-            rowDetailsFields.forEach((rowDetailField) => {
-              const fieldName = rowDetailField.childNodes[0].childNodes[1].textContent || "";
-              const fieldCell = rowDetailField.parentNode.childNodes && rowDetailField.parentNode.childNodes[2].childNodes[0];
-              if(!fieldCell){ return };
-              enhanceDiscoverEventsCell(fieldName, (fieldCell || {}).textContent || '', discoverRowsData[rowIndex], fieldCell, options);
-            });
-          };
+          this.checkDiscoverTableDetailsMutation(element, mutation, discoverRowsData, options);
           // Add observer when switch between the tabs of Table and JSON
           (new MutationObserver(mutationList => {
             if(mutation.addedNodes[0].querySelector('div[role=tabpanel]').getAttribute('aria-labelledby') === 'kbn_doc_viewer_tab_0'){
-              const rowTable = element.previousElementSibling;
-              const discoverTableRows = document.querySelectorAll(`.kbn-table tbody tr.kbnDocTable__row`);
-              const rowIndex = Array.from(discoverTableRows).indexOf(rowTable);
-              const rowDetailsFields = mutation.addedNodes[0].querySelectorAll('.kbnDocViewer__field');
-              if(rowDetailsFields){
-                rowDetailsFields.forEach((rowDetailField) => {
-                  const fieldName = rowDetailField.childNodes[0].childNodes[1].textContent || "";
-                  const fieldCell = rowDetailField.parentNode.childNodes && rowDetailField.parentNode.childNodes[2].childNodes[0];
-                  if(!fieldCell){ return };
-                  enhanceDiscoverEventsCell(fieldName, (fieldCell || {}).textContent || '', discoverRowsData[rowIndex], fieldCell, options);
-                });
-              };
+              this.checkDiscoverTableDetailsMutation(element, mutation, discoverRowsData, options);
             }
           })).observe(mutation.addedNodes[0].querySelector('div[role=tabpanel]'), { attributes: true});
         }
@@ -205,6 +225,30 @@ export class Events extends Component {
 
   closeFlyout = () => {
     this.setState({flyout: false});
+  }
+
+  reloadToast = () => {
+    getToasts().add({
+      color: 'success',
+      title: 'The index pattern was refreshed successfully.',
+      text: toMountPoint(<EuiFlexGroup justifyContent="flexEnd" gutterSize="s">
+        <EuiFlexItem grow={false}>
+          There were some unknown fields for the current index pattern.
+          You need to refresh the page to apply the changes.
+        </EuiFlexItem>
+        <EuiFlexItem grow={false}>
+          <EuiButton onClick={() => window.location.reload()} size="s">Reload page</EuiButton>
+        </EuiFlexItem>
+      </EuiFlexGroup>)
+    })
+  }
+
+  errorToast = (error) => {
+    getToasts().add({
+      color:'danger',
+      title:'The index pattern could not be refreshed.',
+      text: 'There are some unknown fields for the current index pattern. The index pattern fields need to be refreshed.'
+    });
   }
 
   render() {

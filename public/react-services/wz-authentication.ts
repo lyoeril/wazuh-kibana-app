@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Authentication service for Wazuh
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -15,7 +15,8 @@ import { AppState } from './app-state';
 import jwtDecode from 'jwt-decode';
 import store from '../redux/store';
 import { updateUserPermissions, updateUserRoles } from '../redux/actions/appStateActions';
-import { WAZUH_ROLE_ADMINISTRATOR_ID, WAZUH_ROLE_ADMINISTRATOR_NAME } from '../../util/constants';
+import { WAZUH_ROLE_ADMINISTRATOR_ID, WAZUH_ROLE_ADMINISTRATOR_NAME } from '../../common/constants';
+import { getToasts }  from '../kibana-services';
 
 
 export class WzAuthentication{
@@ -49,6 +50,12 @@ export class WzAuthentication{
       store.dispatch(updateUserPermissions(userPolicies));
       store.dispatch(updateUserRoles(WzAuthentication.mapUserRolesIDToAdministratorRole(jwtPayload.rbac_roles || [])));
     }catch(error){
+      getToasts().add({
+        color: 'danger',
+        title: 'Error getting the authorization token',
+        text: error.message || error,
+        toastLifeTimeMs: 300000
+      });
       return Promise.reject(error);
     }
   }

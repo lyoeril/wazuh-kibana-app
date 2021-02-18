@@ -1,7 +1,7 @@
 
 /*
  * Wazuh app - Integrity monitoring components
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ import {
 } from './inventory/';
 import { WzRequest } from '../../../react-services/wz-request';
 import exportCsv from '../../../react-services/wz-csv';
-import { toastNotifications } from 'ui/notify';
+import { getToasts }  from '../../../kibana-services';
 import { ICustomBadges } from '../../wz-search-bar/components';
 import { filtersToObject } from '../../wz-search-bar';
 
@@ -154,7 +154,7 @@ export class Inventory extends Component {
     const filter = {
       ...filters,
       limit: type === 'file' ? '15' : '1',
-      type,
+      ...(type === 'registry' ? {q: 'type=registry_key'} : {type}),      
       ...(type === 'file' && {sort: '+file'})
     };
     return filter;
@@ -165,7 +165,7 @@ export class Inventory extends Component {
     const response = await WzRequest.apiReq(
       'GET',
       `/syscheck/${agentID}`,
-      { params: this.buildFilter(type) },
+      { params: this.buildFilter(type) }
     );
     if (type === 'file') {
       return {
@@ -223,7 +223,7 @@ export class Inventory extends Component {
   }
 
   showToast = (color, title, time) => {
-    toastNotifications.add({
+    getToasts().add({
       color: color,
       title: title,
       toastLifeTimeMs: time,

@@ -1,6 +1,6 @@
 /*
  * Wazuh app - API request service
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,7 +10,6 @@
  * Find more information about this on the LICENSE file.
  */
 import axios from 'axios';
-import chrome from 'ui/chrome';
 import { AppState } from './app-state';
 import { ApiCheck } from './wz-api-check';
 import { WzAuthentication } from './wz-authentication';

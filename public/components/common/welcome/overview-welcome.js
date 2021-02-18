@@ -1,7 +1,7 @@
 /*
  * Wazuh app - React component for building the Overview welcome screen.
  *
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,6 +10,7 @@
  *
  * Find more information about this on the LICENSE file.
  */
+
 import React, { Component, Fragment } from 'react';
 import { StringsTools } from '../../../utils/strings-tools';
 import {
@@ -22,13 +23,14 @@ import {
   EuiFlexGrid,
   EuiCallOut,
   EuiPage,
-  EuiButton
+  EuiButton,
+  EuiButtonEmpty
 } from '@elastic/eui';
 import { updateGlobalBreadcrumb } from '../../../redux/actions/globalBreadcrumbActions';
 import { updateCurrentTab } from '../../../redux/actions/appStateActions';
 import store from '../../../redux/store';
-import './welcome.less';
-import { TabDescription } from '../../../../server/reporting/tab-description';
+import './welcome.scss';
+import { WAZUH_MODULES } from '../../../../common/wazuh-modules';
 
 export class OverviewWelcome extends Component {
   constructor(props) {
@@ -39,7 +41,6 @@ export class OverviewWelcome extends Component {
       extensions: this.props.extensions
     };
   }
-
   setGlobalBreadcrumb() {
     const breadcrumb = [{ text: '' }, { text: 'Modules' }];
     store.dispatch(updateGlobalBreadcrumb(breadcrumb));

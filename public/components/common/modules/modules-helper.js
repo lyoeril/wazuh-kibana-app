@@ -41,8 +41,8 @@ export class ModulesHelper {
   };
 
   static activeNoImplicitsFilters() {
-    const { filterManager } = getServices();
-    const implicitFilters = filterManager.filters.filter((x) => {
+    const { filterManager } = getDataPlugin().query;
+    const implicitFilters = filterManager.getFilters().filter((x) => {
       return x.$state.isImplicit
     }
     );

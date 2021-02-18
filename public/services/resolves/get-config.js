@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Resolve function to parse configuration file
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -10,7 +10,13 @@
  * Find more information about this on the LICENSE file.
  */
 
-import { WAZUH_ALERTS_PATTERN, WAZUH_MONITORING_PATTERN } from "../../../util/constants";
+import {
+  WAZUH_ALERTS_PATTERN,
+  WAZUH_INDEX_REPLICAS,
+  WAZUH_INDEX_SHARDS,
+  WAZUH_MONITORING_PATTERN,
+  WAZUH_SAMPLE_ALERT_PREFIX
+} from "../../../common/constants";
 
 export async function getWzConfig($q, genericReq, wazuhConfig) {
   // Remember to keep this values equal to default wazuh.yml values
@@ -23,6 +29,7 @@ export async function getWzConfig($q, genericReq, wazuhConfig) {
     'checks.fields': true,
     'checks.metaFields': true,
     'checks.timeFilter': true,
+    'checks.maxBuckets': true,
     'extensions.pci': true,
     'extensions.gdpr': true,
     'extensions.hipaa': true,
@@ -43,8 +50,8 @@ export async function getWzConfig($q, genericReq, wazuhConfig) {
     'xpack.rbac.enabled': true,
     'wazuh.monitoring.enabled': true,
     'wazuh.monitoring.frequency': 900,
-    'wazuh.monitoring.shards': 2,
-    'wazuh.monitoring.replicas': 0,
+    'wazuh.monitoring.shards': WAZUH_INDEX_SHARDS,
+    'wazuh.monitoring.replicas': WAZUH_INDEX_REPLICAS,
     'wazuh.monitoring.creation': 'd',
     'wazuh.monitoring.pattern': WAZUH_MONITORING_PATTERN,
     'cron.prefix': 'wazuh',
@@ -53,9 +60,13 @@ export async function getWzConfig($q, genericReq, wazuhConfig) {
     'cron.statistics.interval': '0 */5 * * * *',
     'cron.statistics.index.name': 'statistics',
     'cron.statistics.index.creation': 'w',
+    'cron.statistics.index.shards': WAZUH_INDEX_SHARDS,
+    'cron.statistics.index.replicas': WAZUH_INDEX_REPLICAS,
+    'alerts.sample.prefix': WAZUH_SAMPLE_ALERT_PREFIX,
     hideManagerAlerts: false,
     'logs.level': 'info',
-    'enrollment.dns': ''
+    'enrollment.dns': '',
+    'enrollment.password': '',
   };
 
   try {

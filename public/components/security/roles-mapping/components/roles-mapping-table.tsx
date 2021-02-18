@@ -1,5 +1,7 @@
 import React from 'react';
 import {
+  EuiSpacer,
+  EuiToolTip,
   EuiInMemoryTable,
   EuiBadge,
   EuiFlexItem,
@@ -9,6 +11,7 @@ import {
 } from '@elastic/eui';
 import { ErrorHandler } from '../../../../react-services/error-handler';
 import { WzButtonModalConfirm } from '../../../common/buttons';
+import { WzAPIUtils } from '../../../../react-services/wz-api-utils';
 import RulesServices from '../../rules/services';
 
 export const RolesMappingTable = ({ rolesEquivalences, rules, loading, editRule, updateRules }) => {
@@ -57,10 +60,23 @@ export const RolesMappingTable = ({ rolesEquivalences, rules, loading, editRule,
     {
       field: 'id',
       name: 'Status',
-      render: item => {
-        return item < 3 && <EuiBadge color="primary">Reserved</EuiBadge>;
+      render (item, obj){
+        if(WzAPIUtils.isReservedID(item)){
+          if( (obj.id === 1 || obj.id === 2)){
+            return(
+              <EuiFlexGroup>
+              <EuiBadge color="primary">Reserved</EuiBadge>
+                <EuiToolTip position="top" content="wui_ rules belong to wazuh-wui API user">
+                  <EuiBadge color="accent" title="" style={{ marginLeft: 10 }}>wazuh-wui</EuiBadge>
+                </EuiToolTip>
+              </EuiFlexGroup>
+            );
+          }
+          else
+            return <EuiBadge color="primary">Reserved</EuiBadge>;
+        }
       },
-      width: '150',
+      width: '300',
       sortable: false,
     },
     {
@@ -73,10 +89,10 @@ export const RolesMappingTable = ({ rolesEquivalences, rules, loading, editRule,
             buttonType="icon"
             tooltip={{
               content:
-                item.id < 3 ? "Reserved role mapping can't be deleted" : 'Delete role mapping',
+                WzAPIUtils.isReservedID(item.id) ? "Reserved role mapping can't be deleted" : 'Delete role mapping',
               position: 'left',
             }}
-            isDisabled={item.id < 3}
+            isDisabled={WzAPIUtils.isReservedID(item.id)}
             modalTitle={`Do you want to delete the ${item.name} role mapping?`}
             onConfirm={async () => {
               try {
@@ -84,7 +100,7 @@ export const RolesMappingTable = ({ rolesEquivalences, rules, loading, editRule,
                 ErrorHandler.info('Role mapping was successfully deleted');
                 updateRules();
               } catch (err) {
-                ErrorHandler.error(err);
+                ErrorHandler.handle(err, 'Error deleting the role mapping');
               }
             }}
             modalProps={{ buttonColor: 'danger' }}
