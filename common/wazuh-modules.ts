@@ -125,5 +125,25 @@ export const WAZUH_MODULES = {
   testConfiguration: {
     title: 'Test your configurations',
     description: 'Check configurations before applying them'
+  },
+  firewall: {
+    title: 'Firewall Alerts',
+    description: 'Events related to network traffic.'
+  },
+  threat: {
+    title: 'Network Traffic Alerts',
+    description: 'Events related to network traffic. These events should be taken seriously'
+  },
+  ad: {
+    title: 'Active Directory',
+    description: 'Events related to created, deleted or changed Active Directory Users'
+  },
+  office365: {
+    title: 'Microsoft Office 365',
+    description: 'Events related to activity within Microsoft Office 365'
+  },
+  command: {
+    title: 'Command and Control',
+    description: 'Events related to user behavior and command executions'
   }
 };

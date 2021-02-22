@@ -27,6 +27,12 @@ import vuls from './overview-vuls';
 import mitre from './overview-mitre';
 import osquery from './overview-osquery';
 import docker from './overview-docker';
+import ad from './overview-ad';
+import firewall from './overview-firewall'
+import threat from './overview-threat';
+import office365 from './overview-office365';
+import command from './overview-command';
+import sentinelone from './overview-sentinelone';
 
 export {
   audit,
@@ -46,5 +52,11 @@ export {
   vuls,
   mitre,
   osquery,
-  docker
+  docker,
+  ad,
+  firewall,
+  threat,
+  office365,
+  command,
+  sentinelone
 };
