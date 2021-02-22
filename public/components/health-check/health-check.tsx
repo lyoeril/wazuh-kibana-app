@@ -379,7 +379,7 @@ export class HealthCheck extends Component {
             setTimeout(() => {
               const params = this.$rootScope.previousParams || {};
               var queryString = Object.keys(params).map(key => key + '=' + params[key]).join('&');
-              const url = 'wazuh#' + (this.$rootScope.previousLocation || '') + '?' + queryString;
+              const url = 'managedsecurity#' + (this.$rootScope.previousLocation || '') + '?' + queryString;
               window.location.assign(
                 getHttp().basePath.prepend(url)
               );
