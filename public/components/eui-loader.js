@@ -32,8 +32,9 @@ import { MultipleAgentSelector } from './management/groups/multiple-agent-select
 import { NodeList } from './management/cluster/node-list';
 import { HealthCheck } from './health-check/health-check';
 import { WzEmptyPromptNoPermissions } from './common/permissions/prompt';
+import { getAngularModule } from '../kibana-services';
 
-const app = uiModules.get('app/managedsecurity', ['react']);
+const app = getAngularModule();
 
 app
   .value('EuiIcon', EuiIcon)

@@ -40,19 +40,19 @@ class WzCurrentOverviewSection extends Component {
   setGlobalBreadcrumb() {
     const currentAgent = store.getState().appStateReducers.currentAgentData;
 
-    if(TabDescription[this.props.currentTab]){
+    if(WAZUH_MODULES[this.props.currentTab]){
       const breadcrumb = currentAgent.id ? [
         { text: '' },
         { text: 'Modules', href: '/app/managedsecurity#/overview' },
         { agent: currentAgent },
-        { text: TabDescription[this.props.currentTab].title},
+        { text: WAZUH_MODULES[this.props.currentTab].title},
       ] :
       [
         { text: '' },
         { text: 'Modules', href: '/app/managedsecurity#/overview' },
         
         
-        { text: TabDescription[this.props.currentTab].title},
+        { text: WAZUH_MODULES[this.props.currentTab].title},
       ];
       store.dispatch(updateGlobalBreadcrumb(breadcrumb));
       $('#breadcrumbNoTitle').attr("title","");
