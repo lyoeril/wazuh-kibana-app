@@ -1,6 +1,6 @@
 /*
  * Wazuh app - React component for Visualize.
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -11,12 +11,13 @@
  */
 
 import React from 'react';
-import { useFilterManager, useQuery } from '../../common/hooks';
+import { useFilterManager, useQuery, useRefreshAngularDiscover } from '../../common/hooks';
 import { Discover } from '../../common/modules/discover';
 
 export const SecurityAlerts = () => {
   const [query] = useQuery();
   const filterManager = useFilterManager();
+  const refreshAngularDiscover = useRefreshAngularDiscover();
 
   return (
     <Discover
@@ -25,6 +26,8 @@ export const SecurityAlerts = () => {
       initialColumns={["icon", "timestamp", 'rule.mitre.id', 'rule.mitre.tactic', 'rule.description', 'rule.level', 'rule.id']}
       implicitFilters={[]}
       initialFilters={[]}
-      updateTotalHits={(total) => { }} />
+      updateTotalHits={(total) => { }}
+      refreshAngularDiscover={refreshAngularDiscover}
+      />
   )
 }

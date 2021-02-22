@@ -9,10 +9,9 @@
  *
  * Find more information about this on the LICENSE file.
  */
+import { getAngularModule } from '../kibana-services';
 
-import { uiModules } from 'ui/modules';
-
-const app = uiModules.get('app/managedsecurity', []);
+const app = getAngularModule();
 
 app
   .service('regionmapsConfig', function() {

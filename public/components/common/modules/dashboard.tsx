@@ -25,7 +25,7 @@ export class Dashboard extends Component {
     this._isMount = true;
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    const app = getAngularModule('app/managedsecurity');
+    const app = getAngularModule();
     this.$rootScope = app.$injector.get('$rootScope');
     this.$rootScope.showModuleDashboard = this.props.section;
     await this.modulesHelper.getDiscoverScope();

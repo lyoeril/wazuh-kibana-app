@@ -17,6 +17,7 @@ import { WzMisc } from '../factories/misc';
 import { WazuhConfig } from './wazuh-config';
 import { OdfeUtils } from '../utils';
 import IApiResponse from './interfaces/api-response.interface';
+import { getHttp } from '../kibana-services';
 export class WzRequest {
   static wazuhConfig: any;
 
@@ -41,7 +42,7 @@ export class WzRequest {
       const configuration = this.wazuhConfig.getConfig();
       const timeout = configuration ? configuration.timeout : 20000;
 
-      const url = chrome.addBasePath(path);
+      const url = getHttp().basePath.prepend(path);
       const options = {
         method: method,
         headers: { 'Content-Type': 'application/json', 'kbn-xsrf': 'kibana' },

@@ -1,6 +1,6 @@
 /*
  * Wazuh app - React component for registering agents.
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -50,11 +50,12 @@ export default class WzRuleset extends Component {
       fileContent,
       addingRulesetFile
     } = this.state;
-    if (
+    if (!window.location.href.includes('rules?tab=rules') &&
       (!ruleInfo && !decoderInfo && !listInfo && !fileContent,
-      !addingRulesetFile)
-    )
+        !addingRulesetFile)
+    ) {
       this.store.dispatch({ type: 'RESET' });
+    }
   }
 
   render() {
@@ -70,9 +71,9 @@ export default class WzRuleset extends Component {
       <WzReduxProvider>
         {(ruleInfo && <WzRuleInfo />) ||
           (decoderInfo && <WzDecoderInfo />) ||
-          (listInfo && <WzListEditor />) ||
-          ((fileContent || addingRulesetFile) && <WzRulesetEditor />) || (
-            <WzRulesetOverview />
+          (listInfo && <WzListEditor clusterStatus={this.props.clusterStatus} />) ||
+          ((fileContent || addingRulesetFile) && <WzRulesetEditor clusterStatus={this.props.clusterStatus}/>) || (
+            <WzRulesetOverview clusterStatus={this.props.clusterStatus} />
           )}
       </WzReduxProvider>
     );

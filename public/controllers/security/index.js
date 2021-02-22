@@ -1,5 +1,5 @@
-import { uiModules } from 'ui/modules';
 import { WzSecurity } from '../../components/security';
+import { getAngularModule } from '../../kibana-services';
 
-const app = uiModules.get('app/managedsecurity', []);
+const app = getAngularModule();
 app.value('WzSecurity', WzSecurity);

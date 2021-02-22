@@ -1,7 +1,7 @@
 /*
  * Wazuh app - React component for building the status view
  *
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,7 @@ import WzStatusStats from './status-stats';
 import WzStatusNodeInfo from './status-node-info';
 import WzStatusAgentInfo from './status-agent-info';
 
-import { toastNotifications } from 'ui/notify';
+import { getToasts }  from '../../../../../kibana-services';
 
 import { withUserAuthorizationPrompt, withGlobalBreadcrumb } from '../../../../../components/common/hocs';
 import { compose } from 'redux';
@@ -165,7 +165,7 @@ export class WzStatusOverview extends Component {
   }
 
   showToast = (color, text, time) => {
-    toastNotifications.add({
+    getToasts().add({
       color: color,
       title: text,
       toastLifeTimeMs: time

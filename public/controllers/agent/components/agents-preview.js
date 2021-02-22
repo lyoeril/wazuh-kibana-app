@@ -1,7 +1,7 @@
 /*
  * Wazuh app - React component for building the agents preview section.
  *
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ import { compose } from 'redux';
 export const AgentsPreview = compose(
   withReduxProvider,
   withGlobalBreadcrumb([{ text: '' }, { text: 'Agents' }]),
-  withUserAuthorizationPrompt([{action: 'agent:read', resource: 'agent:id:*'}])
+  withUserAuthorizationPrompt([[{action: 'agent:read', resource: 'agent:id:*'},{action: 'agent:read', resource: 'agent:group:*'}]])
 )(class AgentsPreview extends Component {
   _isMount = false;
   constructor(props) {
@@ -98,14 +98,14 @@ export const AgentsPreview = compose(
       this.setState({ loading: true });
       const summaryData = await WzRequest.apiReq('GET', '/agents/summary/status', {});
       this.summary = summaryData.data.data;
-      this.totalAgents = this.summary.total - 1;
+      this.totalAgents = this.summary.total;
       const model = [
-        { id: 'active', label: "Active", value: (this.summary['active'] || 1) - 1 },
+        { id: 'active', label: "Active", value: this.summary['active'] || 0 },
         { id: 'disconnected', label: "Disconnected", value: this.summary['disconnected'] || 0 },
         { id: 'neverConnected', label: "Never connected", value: this.summary['never_connected'] || 0 }
       ];
       this.setState({ data: model });
-      this.agentsCoverity = this.totalAgents ? (((this.summary['active'] || 1) - 1) / this.totalAgents) * 100 : 0;
+      this.agentsCoverity = this.totalAgents ? ((this.summary['active'] || 0) / this.totalAgents) * 100 : 0;
       const lastAgent = await WzRequest.apiReq('GET', '/agents', {params: { limit: 1, sort: '-dateAdd', q: 'id!=000' }});
       this.lastAgent = lastAgent.data.data.affected_items[0];
       this.mostActiveAgent = await this.props.tableProps.getMostActive();

@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Overview visualizations
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -161,6 +161,15 @@ export const visualizations = {
             id: 'Wazuh-App-Overview-AWS-geo'
           }
         ]
+      },
+      {
+        hide: true,
+        vis: [
+          {
+            title: 'Alerts summary',
+            id: 'Wazuh-App-Overview-AWS-Alerts-summary'
+          }
+        ]
       }
     ]
   },
@@ -206,6 +215,15 @@ export const visualizations = {
           },
         ]
       },
+      {
+        hide: true,
+        vis: [
+          {
+            title: 'Alerts summary',
+            id: 'Wazuh-App-Overview-GCP-Alerts-summary'
+          }
+        ]
+      }
     ]
   },
   pci: {
@@ -608,6 +626,15 @@ export const visualizations = {
             id: 'Wazuh-App-Overview-Virustotal-Files-Table'
           }
         ]
+      },
+      {
+        hide: true,
+        vis: [
+          {
+            title: 'Alerts summary',
+            id: 'Wazuh-App-Overview-Virustotal-Alerts-summary'
+          }
+        ]
       }
     ]
   },
@@ -696,6 +723,15 @@ export const visualizations = {
           }
         ]
       },
+      {
+        hide: true,
+        vis: [
+          {
+            title: 'Alerts summary',
+            id: 'Wazuh-App-Overview-MITRE-Alerts-summary'
+          }
+        ]
+      }
     ]
   },
   docker: {

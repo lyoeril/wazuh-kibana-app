@@ -16,7 +16,7 @@ import { connect } from 'react-redux';
 import WzRulesetTable from './ruleset-table';
 import WzRulesetSearchBar from './ruleset-search-bar';
 import WzRulesetActionButtons from './actions-buttons';
-import './ruleset-overview.css';
+import './ruleset-overview.scss';
 import { withUserAuthorizationPrompt, withGlobalBreadcrumb } from '../../../../../components/common/hocs';
 import { compose } from 'redux';
 
@@ -48,7 +48,7 @@ class WzRulesetOverview extends Component {
               </EuiTitle>
             </EuiFlexItem>
             <EuiFlexItem></EuiFlexItem>
-            <WzRulesetActionButtons />
+            <WzRulesetActionButtons clusterStatus={this.props.clusterStatus} />
           </EuiFlexGroup>
           <EuiFlexGroup>
             <EuiFlexItem>
@@ -60,7 +60,11 @@ class WzRulesetOverview extends Component {
           <WzRulesetSearchBar />
           <EuiFlexGroup>
             <EuiFlexItem>
-              <WzRulesetTable request={section} updateTotalItems={(totalItems) => this.setState({totalItems})} />
+              <WzRulesetTable
+                clusterStatus={this.props.clusterStatus}
+                request={section}
+                updateTotalItems={(totalItems) => this.setState({ totalItems })}
+              />
             </EuiFlexItem>
           </EuiFlexGroup>
         </EuiPanel>

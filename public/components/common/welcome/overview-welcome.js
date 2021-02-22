@@ -58,12 +58,24 @@ export class OverviewWelcome extends Component {
           layout="horizontal"
           icon={<EuiIcon size="xl" type={icon} color="primary" />}
           className="homSynopsis__card"
-          title={TabDescription[tab].title}
+          title={WAZUH_MODULES[tab].title}
           onClick={() => store.dispatch(updateCurrentTab(tab))}
           data-test-subj={`overviewWelcome${this.strtools.capitalize(tab)}`}
-          description={TabDescription[tab].description}
+          description={WAZUH_MODULES[tab].description}
         />
       </EuiFlexItem>
+    );
+  }
+
+  addAgent() {
+    return (
+      <EuiFlexGroup >
+        <EuiFlexItem >
+          <EuiCallOut  style={{height:"65%"}} title="No agents were added to this manager. " color="warning" iconType="alert">
+            <EuiButtonEmpty style={{margin: "-58px 286px"}}  href='#/agents-preview?'>Add agent</EuiButtonEmpty>
+          </EuiCallOut>
+        </EuiFlexItem >
+      </EuiFlexGroup>
     );
   }
 
@@ -73,6 +85,7 @@ export class OverviewWelcome extends Component {
         <EuiPage className="wz-welcome-page">
           <EuiFlexGroup>
             <EuiFlexItem>
+              {this.props.agentsCountTotal == 0 && this.addAgent()}
               <EuiFlexGroup>
                 <EuiFlexItem>
                   <EuiPanel betaBadgeLabel="Security Information Management">

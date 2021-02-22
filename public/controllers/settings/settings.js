@@ -1,6 +1,6 @@
 /*
  * Wazuh app - Settings controller
- * Copyright (C) 2015-2020 Wazuh, Inc.
+ * Copyright (C) 2015-2021 Wazuh, Inc.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -335,6 +335,7 @@ export class SettingsController {
       this.$scope.$emit('updateAPI', { cluster_info });
       this.apiEntries[index].cluster_info = cluster_info;
       this.apiEntries[index].status = 'online';
+      this.apiEntries[index].allow_run_as = data.data.allow_run_as;
       this.wzMisc.setApiIsDown(false);
       this.apiIsDown = false;
       !silent && ErrorHandler.info('Connection success', 'Settings');

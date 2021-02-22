@@ -11,35 +11,40 @@
  */
 
 import React, { Component, Fragment } from 'react';
-import { getAngularModule } from '../../../../../../src/plugins/discover/public/kibana_services';
+import { getAngularModule, getToasts } from '../../../kibana-services';
 import { EventsSelectedFiles } from './events-selected-fields';
 import { ModulesHelper } from './modules-helper';
 import store from '../../../redux/store';
-
-import { EuiOverlayMask } from '@elastic/eui';
+import { EuiButton, EuiFlexGroup, EuiFlexItem, EuiOverlayMask } from '@elastic/eui';
+import { PatternHandler } from '../../../react-services/pattern-handler';
 
 import { enhanceDiscoverEventsCell } from './events-enhance-discover-fields';
+import { toMountPoint } from '../../../../../../src/plugins/kibana_react/public';
 
 export class Events extends Component {
   intervalCheckExistsDiscoverTableTime: number = 200;
   isMount: boolean;
   state: {
     flyout: false | {component: any, props: any }
-    discoverRowsData: any[]
+    discoverRowsData: any[],
+    hasRefreshedKnownFields: boolean,
+    isRefreshing: boolean,
   }
   constructor(props) {
     super(props);
     this.isMount = true;
     this.state = {
       flyout: false,
-      discoverRowsData: []
+      discoverRowsData: [],
+      hasRefreshedKnownFields: false,
+      isRefreshing: false,
     };
   }
 
   async componentDidMount() {
     document.body.scrollTop = 0; // For Safari
     document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    const app = getAngularModule('app/managedsecurity');
+    const app = getAngularModule();
     this.$rootScope = app.$injector.get('$rootScope');
     this.$rootScope.showModuleEvents = this.props.section;
     const scope = await ModulesHelper.getDiscoverScope();

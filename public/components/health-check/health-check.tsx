@@ -1,20 +1,21 @@
 import React, { Component } from 'react';
 import { EuiLoadingSpinner, EuiDescriptionList, EuiIcon, EuiCallOut, EuiSpacer, EuiButton } from '@elastic/eui';
-import chrome from 'ui/chrome';
 import { AppState } from '../../react-services/app-state';
 import { PatternHandler } from '../../react-services/pattern-handler';
-import { getAngularModule } from '../../../../../src/plugins/discover/public/kibana_services';
+import { getAngularModule, getToasts, getHttp } from '../../kibana-services';
 import { WazuhConfig } from '../../react-services/wazuh-config';
 import { GenericRequest } from '../../react-services/generic-request';
 import { ApiCheck } from '../../react-services/wz-api-check';
 import { WzRequest } from '../../react-services/wz-request';
 import { SavedObject } from '../../react-services/saved-objects';
 import { ErrorHandler } from '../../react-services/error-handler';
-import { toastNotifications } from 'ui/notify';
-import { WAZUH_MONITORING_PATTERN } from '../../../util/constants';
-import { checkKibanaSettings, checkKibanaSettingsTimeFilter } from './lib';
+import { WAZUH_ERROR_DAEMONS_NOT_READY, WAZUH_INDEX_TYPE_STATISTICS, WAZUH_INDEX_TYPE_MONITORING } from '../../../common/constants';
+import { checkKibanaSettings, checkKibanaSettingsTimeFilter, checkKibanaSettingsMaxBuckets} from './lib';
+import store from '../../redux/store';
+import { updateWazuhNotReadyYet } from '../../redux/actions/appStateActions.js';
 
 export class HealthCheck extends Component {
+  checkPatternCount = 0;
     constructor(props) {
         super(props);
         this.state = {
@@ -24,13 +25,13 @@ export class HealthCheck extends Component {
         };
     }
     async componentDidMount() {
-        const app = getAngularModule('app/managedsecurity');
+    const app = getAngularModule();
         this.$rootScope = app.$injector.get('$rootScope');
         this.load();
     }
 
     showToast = (color, title, text, time) => {
-        toastNotifications.add({
+    getToasts().add({
             color: color,
             title: title,
             text: text,
@@ -47,10 +48,18 @@ export class HealthCheck extends Component {
         this.setState({ errors });
     }
 
+  /**
+   * Sleep method
+   * @param time
+   */
+  delay = time => new Promise(res => setTimeout(res,time));
+
     /**
      * This validates a pattern
      */
     async checkPatterns() {
+    this.checkPatternCount++;
+    if (this.checkPatternCount > 10) return Promise.reject('Error trying to check patterns.');
         try {
             const patternId = AppState.getCurrentPattern();
             let patternTitle = '';
@@ -61,21 +70,13 @@ export class HealthCheck extends Component {
                 let patternData = patternId ? await SavedObject.existsIndexPattern(patternId) : false;
                 if (!patternData) patternData = {};
                 patternTitle = patternData.title;
-                /* This extra check will work as long as Wazuh monitoring index ID is wazuh-monitoring-*.
-                   Currently is not possible to change that index pattern as it has always been created on our backend.
-                   This extra check checks if the index pattern exists for the current logged in user
-                   in case it doesn't exist, the index pattern is automatically created. This is necessary to make it work with Opendistro multinenancy
-                   as every index pattern is stored in its current tenant .kibana-tenant-XX index. 
-                   */
-                try {
-                    await SavedObject.existsMonitoringIndexPattern(WAZUH_MONITORING_PATTERN); //this checks if it exists, if not it automatically creates the index pattern
-                } catch (err) { }
+
                 if (!patternData.status) {
                     const patternList = await PatternHandler.getPatternList("healthcheck");
                     if (patternList.length) {
                         const currentPattern = patternList[0].id;
                         AppState.setCurrentPattern(currentPattern);
-                        return this.checkPatterns();
+            return await this.checkPatterns();
                     } else {
                         errors.push('The selected index-pattern is not present.');
                         results[i].description = <span><EuiIcon type="alert" color="danger" ></EuiIcon> Error</span>;
@@ -117,16 +118,29 @@ export class HealthCheck extends Component {
             const errors = [];
 
             if (hosts.length) {
-                for (var i = 0; i < hosts.length; i++) {
+        for (let i = 0; i < hosts.length; i++) {
+          let tries = 10;
+          while (tries--) {
+            await this.delay(5000);
                     try {
                         const API = await ApiCheck.checkApi(hosts[i], true);
                         if (API && API.data) {
                             return hosts[i].id;
                         }
                     } catch (err) {
+              if (err.includes(WAZUH_ERROR_DAEMONS_NOT_READY)) {
+                const updateNotReadyYet = updateWazuhNotReadyYet(false);
+                store.dispatch(updateNotReadyYet);
+              } else {
                         errors.push(`Could not connect to API with id: ${hosts[i].id}: ${err.message || err}`);
                     }
                 }
+          }
+        }
+
+        const updateNotReadyYet = updateWazuhNotReadyYet(true);
+        store.dispatch(updateNotReadyYet);
+
                 if (errors.length) {
                     let err = this.state.errors;
                     errors.forEach(error => err.push(error));
@@ -219,7 +233,7 @@ export class HealthCheck extends Component {
 
                         const i = this.state.results.map(item => item.id).indexOf(1);
                         if (api.groups.version !== appSplit[0] || api.groups.minor !== appSplit[1]) {
-                            this.errors.push(
+              errors.push(
                                 'API version mismatch. Expected v' +
                                 setupData.data.data['app-version']
                             );
@@ -246,6 +260,46 @@ export class HealthCheck extends Component {
         }
     }
 
+  /**
+   * This check if the pattern exist then create if not
+   * @param pattern string
+   */
+  async checkSupportPattern(pattern, itemId, indexType) {
+    let results = this.state.results;
+    let errors = this.state.errors;
+
+    const result = await SavedObject.existsIndexPattern(pattern);
+    if (!result.data) {
+      const toast = getToasts().addWarning(`${pattern} index pattern was not found and it will be created`)
+      const fields = await SavedObject.getIndicesFields(pattern, indexType);
+      try {
+        await SavedObject.createSavedObject(
+          'index-pattern',
+          pattern,
+          {
+            attributes: {
+              title: pattern,
+              timeFieldName: 'timestamp'
+            }
+          },
+          fields
+        );
+        getToasts().remove(toast.id);
+        getToasts().addSuccess(`${pattern} index pattern created successfully`)
+        results[itemId].description = <span><EuiIcon type="check" color="secondary" ></EuiIcon> Ready</span>;
+        this.setState({ results });
+      } catch (error) {
+        getToasts().remove(toast.id);
+        errors.push(`Error trying to create ${pattern} index pattern: ${error.message}`);
+        results[itemId].description = <span><EuiIcon type="alert" color="danger" ></EuiIcon> Error</span>;
+        this.setState({ results });
+      }
+    }else{
+      results[itemId].description = <span><EuiIcon type="check" color="secondary" ></EuiIcon> Ready</span>;
+      this.setState({ results });
+    }
+  }
+
     /**
      * On controller loads
      */
@@ -255,6 +309,7 @@ export class HealthCheck extends Component {
             const configuration = wazuhConfig.getConfig();
             checkKibanaSettings(configuration['checks.metaFields']);
             checkKibanaSettingsTimeFilter(configuration['checks.timeFilter']);
+      checkKibanaSettingsMaxBuckets(configuration['checks.maxBuckets']);
             AppState.setPatternSelector(configuration['ip.selector']);
             let checks = {};
             checks.pattern = configuration['checks.pattern'];
@@ -288,11 +343,26 @@ export class HealthCheck extends Component {
                     id: 4,
                     title: 'Check index pattern fields',
                     description: checks.fields ? <span><EuiLoadingSpinner size="m" /> Checking...</span> : 'Disabled'
-                }
+        },
+        {
+          id: 5,
+          title: 'Check Monitoring index pattern',
+          description: <span><EuiLoadingSpinner size="m" /> Checking...</span>
+        },
+        {
+          id: 6,
+          title: 'Check Statistics index pattern',
+          description: <span><EuiLoadingSpinner size="m" /> Checking...</span>
+        },
             );
             this.setState({ checks, results },
                 async () => {
-                    await Promise.all([this.checkPatterns(), this.checkApiConnection()]);
+          await Promise.all([
+            this.checkPatterns(),
+            this.checkApiConnection(),
+            this.checkSupportPattern(configuration['wazuh.monitoring.pattern'], 5, WAZUH_INDEX_TYPE_MONITORING),
+            this.checkSupportPattern(`${configuration['cron.prefix']}-${configuration['cron.statistics.index.name']}-*`, 6, WAZUH_INDEX_TYPE_STATISTICS),
+          ]);
                     if (checks.fields) {
                         const i = results.map(item => item.id).indexOf(4);
                         try {
