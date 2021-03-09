@@ -398,7 +398,7 @@ export class HealthCheck extends Component {
   }
 
   render() {
-    const logo_url = getHttp().basePath.prepend('/plugins/managedsecurity/assets/emblem.png');
+    const logo_url = getHttp().basePath.prepend('/plugins/managedsecurity/assets/icon_blue.svg');
     return (
       <div className="health-check">
         <EuiLoadingSpinner className="health-check-loader" />

@@ -1,6 +1,10 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
+<<<<<<< HEAD
+=======
+    "jsx": "react",
+>>>>>>> ccdc42101a1ac40f2c7afee275672471ed59bf82
     "esModuleInterop": true,
     "outDir": "./target",
     "allowUnusedLabels": true,

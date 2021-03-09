@@ -66,5 +66,8 @@ target/
 build/
 
 yarn.lock
+<<<<<<< HEAD
 
 #server/wazuh-registry.json
+=======
+>>>>>>> ccdc42101a1ac40f2c7afee275672471ed59bf82
