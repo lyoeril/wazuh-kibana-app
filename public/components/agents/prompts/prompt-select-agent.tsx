@@ -13,16 +13,21 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { EuiEmptyPrompt, EuiButton } from '@elastic/eui';
-import { showExploreAgentModal } from '../../redux/actions/appStateActions';
+import { showExploreAgentModal } from '../../../redux/actions/appStateActions';
 
-export const PromptNoSelectedAgent = ({body}) => {
+type PromptSelectAgentProps = {
+  body?: string;
+  title: string;
+}
+
+export const PromptSelectAgent = ({ body, title }:PromptSelectAgentProps) => {
   const dispatch = useDispatch();
   const openAgentSelector = () => dispatch(showExploreAgentModal(true));
   return (
     <EuiEmptyPrompt
       iconType="watchesApp"
-      title={<h2>No agent is selected</h2>}
-      body={<p>{body}</p>
+      title={<h2>{title}</h2>}
+      body={body && <p>{body}</p>
       }
       actions={
         <EuiButton color="primary" fill onClick={openAgentSelector}>
